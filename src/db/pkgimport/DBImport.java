@@ -5,6 +5,8 @@
  */
 package db.pkgimport;
 
+import database.DatabaseManager;
+
 /**
  *
  * @author Christian
@@ -16,6 +18,17 @@ public class DBImport {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        DatabaseManager dbm = new DatabaseManager("localhost", "testuser", "ming", "testdb");
+        if(dbm.connect()) {
+            System.out.println("Verbindung OK");
+        }
+        else {
+            System.out.println("Verbindung NICHT OK");
+        }
+        
+        String cols[] = {"Vorname", "Nachname"};
+        String data[] = {"Christian", "Roßkamp"};
+        dbm.insert("testtabelle", cols, data);
     }
     
 }
